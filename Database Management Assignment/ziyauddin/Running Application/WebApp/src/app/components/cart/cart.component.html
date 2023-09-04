@@ -1,0 +1,76 @@
+<div class="container">
+  <h5 class="text-center mt-3 mb-2">Displaying Cart Data</h5>
+  <div class="col-sm-12">
+    <p *ngIf="!this.isLoggedIn">Login to see your data</p>
+    <div class="conatiner" *ngIf="this.isLoggedIn">
+      <p *ngIf="this.cartData.length <= 0">No data in cart</p>
+      <div class="row" *ngIf="this.cartData.length > 0">
+        <div class="col-sm-8" style="max-height: 450px; overflow: scroll">
+          <div class="col-sm-12 card mb-2" *ngFor="let data of this.cartData">
+            <div class="row">
+              <div class="col-sm-4">
+                <p><b>Name: </b> {{ data.ProductName }}</p>
+                <p><b>Price: </b> {{ data.ProductPrice }}</p>
+                <p><b>Discount: </b> {{ data.ProductDiscount }}</p>
+              </div>
+              <div class="col-sm-4">
+                <a
+                  type="button"
+                  class="btn btn-sm"
+                  [routerLink]="['/checkout', data.Id]"
+                >
+                  <img
+                    [src]="data.ProductImage"
+                    alt="img"
+                    width="120"
+                    height="130"
+                  />
+                </a>
+              </div>
+              <div class="col-sm-4 mt-5">
+                <a
+                  type="button"
+                  class="btn btn-sm btn-success"
+                  [routerLink]="['/checkout', data.Id]"
+                >
+                  Purches
+                </a>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-danger ml-2"
+                  (click)="deleteCartItem(data.Id)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+          <p *ngIf="this.cartData === null">No Item in cart</p>
+        </div>
+        <div class="col-sm-4 card bg-secondary text-light">
+          <h4 class="mb-2 mt-2">Checkout</h4>
+          <hr />
+          <div class="row justify-content-between">
+            <div class="col-6">
+              <p><b>Product Price: </b></p>
+            </div>
+            <div class="col-4">{{ totalPrice }}</div>
+          </div>
+          <div class="row justify-content-between">
+            <div class="col-6">
+              <p><b>Total Discount: </b></p>
+            </div>
+            <div class="col-4">{{ totalDiscount }}</div>
+          </div>
+          <hr />
+          <div class="row justify-content-between">
+            <div class="col-8">
+              <p><b>Total Price After Discount: </b></p>
+            </div>
+            <div class="col-4">{{ totalPrice - totalDiscount }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

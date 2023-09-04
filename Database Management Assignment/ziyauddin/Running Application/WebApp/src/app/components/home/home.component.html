@@ -1,0 +1,161 @@
+<div class="container mt-2" style="height: 480px; overflow: scroll">
+  <div class="container">
+    <div class="row mt-4" *ngIf="!this.isLoggedIn">
+      <div
+        class="col-md-6"
+        *ngFor="let data of this.allProductData; let i = index"
+      >
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-8">
+                <h5 class="card-title">{{ data.ProductName }}</h5>
+                <p class="card-text"><b>Price:</b> {{ data.ProductPrice }}</p>
+                <p class="card-text">
+                  <b>Discount:</b> {{ data.ProductDiscount }}
+                </p>
+                <a
+                  *ngIf="checkInCart(data.Id)"
+                  class="btn btn-secondary text-white"
+                  routerLink="/cart"
+                >
+                  Added
+                </a>
+                <a
+                  *ngIf="!checkInCart(data.Id)"
+                  class="btn btn-primary text-white"
+                  (click)="addToCart(data.Id)"
+                >
+                  Add To Cart
+                </a>
+                <a
+                  class="btn btn-success text-white ml-1"
+                  (click)="checkout(data.Id)"
+                >
+                  Purchase
+                </a>
+              </div>
+              <div class="col-sm-4">
+                <img
+                  [src]="data.ProductImage"
+                  alt="img"
+                  width="130"
+                  height="150"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- After every 4 cards, start a new row for vertical layout -->
+        <div *ngIf="(i + 1) % 4 === 0" class="w-100"></div>
+      </div>
+    </div>
+    <div class="row mt-4" *ngIf="this.isLoggedIn && this.isLoggedInAsBuyer">
+      <div
+        class="col-md-6"
+        *ngFor="let data of this.allProductData; let i = index"
+      >
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-8">
+                <h5 class="card-title">{{ data.ProductName }}</h5>
+                <p class="card-text"><b>Price:</b> {{ data.ProductPrice }}</p>
+                <p class="card-text">
+                  <b>Discount:</b> {{ data.ProductDiscount }}
+                </p>
+                <a
+                  *ngIf="checkInCart(data.Id)"
+                  class="btn btn-secondary text-white"
+                  routerLink="/cart"
+                >
+                  Added
+                </a>
+                <a
+                  *ngIf="!checkInCart(data.Id)"
+                  class="btn btn-primary text-white"
+                  (click)="addToCart(data.Id)"
+                >
+                  Add To Cart
+                </a>
+                <a
+                  class="btn btn-success text-white ml-1"
+                  (click)="checkout(data.Id)"
+                >
+                  Purchase
+                </a>
+              </div>
+              <div class="col-sm-4">
+                <img
+                  [src]="data.ProductImage"
+                  alt="img"
+                  width="130"
+                  height="150"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- After every 4 cards, start a new row for vertical layout -->
+        <div *ngIf="(i + 1) % 4 === 0" class="w-100"></div>
+      </div>
+    </div>
+    <div class="row mt-4" *ngIf="this.isLoggedIn && !this.isLoggedInAsBuyer">
+      <p *ngIf="allProductData.length <= 0">No data for this seller</p>
+      <div
+        class="col-md-6"
+        *ngFor="let data of this.allProductData; let i = index"
+      >
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-8">
+                <h5 class="card-title">{{ data.ProductName }}</h5>
+                <p class="card-text"><b>Price:</b> {{ data.ProductPrice }}</p>
+                <p class="card-text">
+                  <b>Discount:</b> {{ data.ProductDiscount }}
+                </p>
+                <a
+                  *ngIf="checkInCart(data.Id)"
+                  class="btn btn-secondary text-white"
+                  routerLink="/cart"
+                >
+                  Added
+                </a>
+                <a
+                  *ngIf="!checkInCart(data.Id)"
+                  class="btn btn-primary text-white"
+                  (click)="addToCart(data.Id)"
+                >
+                  Add To Cart
+                </a>
+                <a
+                  class="btn btn-success text-white ml-1"
+                  (click)="checkout(data.Id)"
+                >
+                  Purchase
+                </a>
+                <a
+                  class="btn btn-danger text-white ml-1"
+                  (click)="deleteProduct(data.Id)"
+                >
+                  Delete
+                </a>
+              </div>
+              <div class="col-sm-4">
+                <img
+                  [src]="data.ProductImage"
+                  alt="img"
+                  width="130"
+                  height="150"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- After every 4 cards, start a new row for vertical layout -->
+        <div *ngIf="(i + 1) % 4 === 0" class="w-100"></div>
+      </div>
+    </div>
+  </div>
+</div>

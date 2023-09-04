@@ -1,0 +1,132 @@
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <div class="col-sm-4">
+      <div style="height: 7px; margin-bottom: 10px; margin-top: 5px">
+        <span *ngIf="dataAdded1" class="text-success" style="float: left">
+          {{ message1 }}
+          <br />
+          {{ message2 }}
+        </span>
+        <span *ngIf="dataAdded2" class="text-danger" style="float: left">
+          {{ message1 }}
+        </span>
+      </div>
+      <br />
+      <form [formGroup]="formData" (ngSubmit)="onAddRecord()" novalidate>
+        <div class="form-group">
+          <label style="float: left" for="userType">User Type</label>
+          <select class="form-control" formControlName="userType" id="userType">
+            <option>Buyer</option>
+            <option>Seller</option>
+          </select>
+          <div
+            *ngIf="
+              formData.controls['userType'].invalid &&
+              formData.controls['userType'].touched
+            "
+            class="alert alert-danger"
+            style="padding: 3px"
+          >
+            <span
+              style="padding-left: 3px"
+              *ngIf="formData.controls['userType'].errors"
+            >
+              Required
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label style="float: left" for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            aria-describedby="nameHelp"
+            formControlName="name"
+            placeholder="Enter name"
+          />
+          <div
+            *ngIf="
+              formData.controls['name'].invalid &&
+              (formData.controls['name'].dirty ||
+                formData.controls['name'].touched)
+            "
+            class="alert alert-danger"
+            style="padding: 3px"
+          >
+            <div *ngIf="formData.controls['name'].errors">
+              Name is required.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label style="float: left" for="email">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            aria-describedby="emailHelp"
+            formControlName="email"
+            placeholder="Enter email"
+          />
+          <div
+            *ngIf="
+              formData.controls['email'].invalid &&
+              formData.controls['email'].touched
+            "
+            class="alert alert-danger"
+            style="padding: 3px"
+          >
+            <span
+              style="padding-left: 3px"
+              *ngIf="formData.controls['email'].errors"
+            >
+              Invalid Email.
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label style="float: left" for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            placeholder="Password"
+          />
+          <div
+            *ngIf="
+              formData.controls['password'].invalid &&
+              formData.controls['password'].touched
+            "
+            class="alert alert-danger"
+            style="padding: 3px"
+          >
+            <span
+              style="padding-left: 3px"
+              *ngIf="formData.controls['password'].errors"
+            >
+              password minimum length should be 5.
+            </span>
+          </div>
+        </div>
+
+        <button
+          [disabled]="!formData.valid"
+          type="submit"
+          class="btn btn-primary my-2"
+        >
+          Register
+        </button>
+        <button
+          style="margin-left: 10px"
+          (click)="onClear()"
+          class="btn btn-danger"
+        >
+          Clear
+        </button>
+      </form>
+      <span style="padding: 5px">
+        Already regiserd?
+        <a routerLink="/login">Login</a> here
+      </span>
+    </div>
+  </div>
+</div>

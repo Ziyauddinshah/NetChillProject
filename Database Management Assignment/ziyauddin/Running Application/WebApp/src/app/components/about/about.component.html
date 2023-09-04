@@ -1,0 +1,15 @@
+<div class="container">
+  <p>about works!</p>
+  <form (submit)="onSubmit()" enctype="multipart/form-data">
+    <input type="file" (change)="onFileSelected($event)" />
+    <button type="submit">Upload Image</button>
+  </form>
+
+  <img
+    *ngIf="uploadedImagePath"
+    [src]="uploadedImagePath"
+    alt="Uploaded Image"
+    width="200"
+    height="250"
+  />
+</div>

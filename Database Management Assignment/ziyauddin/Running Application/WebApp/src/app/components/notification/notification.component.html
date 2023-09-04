@@ -1,0 +1,14 @@
+<div class="container">
+  <button
+    type="button"
+    class="btn btn-info btn-sm mt-2"
+    (click)="sendMessage()"
+  >
+    Send Message
+  </button>
+  <div *ngIf="message != null">
+    <h2>{{ title }}</h2>
+    <h6>{{ body }}</h6>
+  </div>
+  <div *ngIf="message == null">No Message Arrived</div>
+</div>

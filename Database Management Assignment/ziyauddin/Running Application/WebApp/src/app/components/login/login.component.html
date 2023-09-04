@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <div class="col-sm-4 mt-4">
+      <span class="mt-2 mb-1">{{ message }}</span>
+      <form [formGroup]="formData" (ngSubmit)="onLogin()" novalidate>
+        <div class="form-group">
+          <label style="float: left" for="email">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            aria-describedby="emailHelp"
+            formControlName="email"
+            placeholder="Enter email"
+          />
+          <div
+            *ngIf="
+              formData.controls['email'].invalid &&
+              formData.controls['email'].touched
+            "
+            class="alert alert-danger"
+            style="padding: 3px"
+          >
+            <span
+              style="padding-left: 3px"
+              *ngIf="formData.controls['email'].errors"
+            >
+              Invalid Email.
+            </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label style="float: left" for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            placeholder="Password"
+          />
+          <div
+            *ngIf="
+              formData.controls['password'].invalid &&
+              formData.controls['password'].touched
+            "
+            class="alert alert-danger"
+            style="padding: 3px"
+          >
+            <span
+              style="padding-left: 3px"
+              *ngIf="formData.controls['password'].errors"
+            >
+              password minimum length should be 5.
+            </span>
+          </div>
+        </div>
+
+        <button
+          [disabled]="!formData.valid"
+          type="submit"
+          class="btn btn-primary my-2"
+        >
+          Login
+        </button>
+        <button
+          style="margin-left: 10px"
+          (click)="onClear()"
+          class="btn btn-danger"
+        >
+          Clear
+        </button>
+      </form>
+      <p style="padding: 5px">
+        New user?
+        <a routerLink="/register">Register</a> here
+      </p>
+      <p class="pl-1">
+        Forget Password ?
+        <button
+          type="button"
+          class="btn btn-primary btn-sm"
+          (click)="forgetPassword()"
+        >
+          click
+        </button>
+        here
+      </p>
+    </div>
+  </div>
+</div>
