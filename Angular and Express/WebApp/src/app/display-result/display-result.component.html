@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <div class="col-sm-5 mt-5">
+      <div style="margin-bottom: 30px; font-size: 15px">
+        <a routerLink="/student" style="float: left">
+          <b>Back</b>
+        </a>
+        <a routerLink="/home" style="float: right">
+          <b>Home</b>
+        </a>
+      </div>
+      <div style="background-color: rgb(225, 237, 233)">
+        <h3>Result</h3>
+        <hr />
+        <div style="margin-top: 20px; padding: 10px" *ngFor="let data of Data">
+          <p><b>RollNo: </b>{{ data.RollNo }}</p>
+          <p><b>Name: </b>{{ data.Name }}</p>
+          <p><b>Date Of Birth: </b>{{ data.DOB }}</p>
+          <p><b>Score: </b>{{ data.Score }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

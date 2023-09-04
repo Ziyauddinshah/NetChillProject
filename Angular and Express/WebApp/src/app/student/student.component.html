@@ -1,0 +1,69 @@
+<div class="d-flex justify-content-center">
+  <div class="col-sm-4 mt-3">
+    <h3>Find Result</h3>
+    <span *ngIf="!isStudentFound" class="text-danger" style="margin-left: -56%"
+      >Student does not found...</span
+    >
+    <form [formGroup]="studentFormData" (ngSubmit)="onFindResult()" novalidate>
+      <div class="form-group">
+        <label style="float: left" for="rollNo">RollNo</label>
+        <input
+          type="number"
+          class="form-control"
+          aria-describedby="rollNoHelp"
+          formControlName="rollNo"
+          placeholder="Enter RollNo"
+        />
+        <div
+          *ngIf="
+            studentFormData.controls['rollNo'].invalid &&
+            (studentFormData.controls['rollNo'].dirty ||
+              studentFormData.controls['rollNo'].touched)
+          "
+          class="alert alert-danger"
+          style="padding: 3px"
+        >
+          <div *ngIf="studentFormData.controls['rollNo'].errors">
+            RollNo is required.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label style="float: left" for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="name"
+          placeholder="Enter Name"
+        />
+        <div
+          *ngIf="
+            studentFormData.controls['name'].invalid &&
+            (studentFormData.controls['name'].dirty ||
+              studentFormData.controls['name'].touched)
+          "
+          class="alert alert-danger"
+          style="padding: 3px"
+        >
+          <div *ngIf="studentFormData.controls['name'].errors">
+            Name is required.
+          </div>
+        </div>
+      </div>
+      <button
+        [disabled]="!studentFormData.valid"
+        type="submit"
+        class="btn btn-primary my-2"
+      >
+        Search
+      </button>
+      <button
+        style="margin-left: 10px"
+        (click)="onClear()"
+        class="btn btn-danger my-2"
+      >
+        Clear
+      </button>
+    </form>
+  </div>
+</div>

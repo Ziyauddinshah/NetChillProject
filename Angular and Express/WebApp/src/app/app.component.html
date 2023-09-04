@@ -1,0 +1,17 @@
+<div class="app-main">
+  <div class="result-management-heading">
+    <div class="d-flex justify-content-center">
+      <h3 style="width: 90%">Result Management System</h3>
+      <button
+        type="button"
+        class="btn btn-warning btn-outline-dark"
+        *ngIf="loggedIn()"
+        (click)="logOut()"
+        style="width: 7%"
+      >
+        Logout
+      </button>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>
