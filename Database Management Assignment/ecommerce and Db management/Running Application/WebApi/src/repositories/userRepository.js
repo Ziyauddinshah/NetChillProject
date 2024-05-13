@@ -113,6 +113,7 @@ class UserRepository {
       return data;
     }
   }
+  
   sendPasswordToEmail(email, password) {
     const htmlContent = `
       <h5>Hello,</h5>
